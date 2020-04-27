@@ -1,0 +1,8 @@
+<ul>
+  <li ><a routerLink="/login" routerLinkActive="active">login</a></li>
+  <li><a routerLink="/" routerLinkActive="active">Home</a></li>
+  <li><a routerLink="/users" routerLinkActive="active">Users</a></li>
+  <li *ngIf="auth.loginState"><a routerLink="#" (click)="auth.logout()">Sign Out</a></li>
+</ul>
+<router-outlet></router-outlet>
+<app-resizehandler></app-resizehandler>

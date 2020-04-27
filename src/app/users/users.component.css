@@ -1,0 +1,63 @@
+.userList{
+    margin: auto;
+    max-width: 800px;
+    border: 1px solid gray;
+    border-radius: 15px;
+    margin-top: 5rem;
+    padding: 3em;
+}
+
+table{
+    width: 100%;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+select{
+    width: calc(100% - 16px);
+    margin: 16px;
+}
+
+.large-entry{
+    width: 50%;
+    text-align: left;
+    padding-left: 2em;
+}
+
+#save-button{
+    position: sticky;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    bottom: 20px;
+    text-align: center;
+}
+
+#save-button button{
+    background-color: #07b810;
+    color: white;
+    font-size: large;
+    border: 1px #058d0c solid;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 0 #5bb460;
+}
+
+#save-button button:hover {
+    border: 1px #3d7a40 solid;
+    box-shadow: 0 1px 1px #EAEAEA, inset 0 1px 0 #449248;
+    background: #06a70e;
+    color: white;
+}
+
+#save-button button:active {
+    box-shadow: inset 0 2px 5px #058d0c;    
+}
+
+.create-button{
+    margin-bottom: 16px;
+    border-radius: 5px;
+}

@@ -1,0 +1,44 @@
+.create {
+    max-width: 500px;
+    margin: auto;
+    margin-top: 4rem;
+    z-index: 99;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 8px;
+    position: absolute;
+    left: 38vw;
+    top: 4rem;
+    width: 100%;
+    padding: 3rem;
+    padding-top: 8px;
+  }
+  
+  .close-button {
+    float: right;
+    font-size: larger;
+    padding: 8px;
+    cursor: pointer;
+    color: rgb(192, 12, 12);
+  }
+  
+  .close-button:hover{
+    color: rgb(218, 14, 14);
+  }
+  
+  .create-button{
+    text-align: center;
+  }
+
+@media only screen and (max-width: 1300px){
+  .create{
+    left: calc(22% - 5vw);
+  }
+}
+
+@media only screen and (max-width: 750px){
+  .create{
+    margin-top: 5rem;
+    left: 0;
+  }
+}

@@ -1,0 +1,36 @@
+<div class="login">
+    <div *ngIf="!auth.loginState">
+        <h2>Login</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="username">Email</label>
+                <input type="email" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                    <div *ngIf="f.username.errors.required">Email is required</div>
+                </div>
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.email">Not an email</div>
+                    </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.incorrect">Password is Wrong</div>
+                    </div>
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                    <div *ngIf="f.password.errors.required">Password is required</div>
+                </div>
+            </div>
+            <div class="form-group login-btn-group">
+                <button [disabled]="loading" class="btn btn-primary login-btn">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Login
+                </button>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="auth.loginState">
+        <button (click)="auth.logout()" class="btn btn-primary">Sign Out</button>
+    </div>
+</div>

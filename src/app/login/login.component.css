@@ -1,0 +1,21 @@
+.login {
+  max-width: 500px;
+  margin: auto;
+  margin-top: 4rem;
+}
+
+.login-btn-group{
+   text-align: center;
+}
+
+.login-btn{
+    max-width: 200px;
+    width: 100%;
+}
+
+@media only screen and (max-width: 600px) {
+  .login {
+    margin: 2rem;
+    margin-top: 4rem;
+  }
+}

@@ -1,0 +1,22 @@
+<div>
+    <div class="userList">
+        <button class="create-button btn btn-primary" (click)="openCreateUser()"><i class="fa fa-plus"></i> Create User</button>
+        <table>
+            <tr>
+                <th colspan="2">Email</th>
+                <th>Role</th>
+            </tr>
+            <tr *ngFor="let user of userService.users | async; let i = index">
+                <td class="large-entry" colspan="2">{{user.email}}</td>
+                <td colspan="4"><select [id]="i" (change)="selectChange($event)"> 
+                    <option value="user" [selected]="!user.isAdmin">User</option>
+                    <option value="admin" [selected]="user.isAdmin">Admin</option>
+                </select></td>
+            </tr>
+        </table>
+        <div id="save-button">
+            <button (click)="save()"><i class="fa fa-save"></i> Save</button>
+        </div>
+    </div>
+    <app-create-user *ngIf="openCreateUserVar" (closedDialog)="closeCreateUser()" (userCreated)="createdUser($event)"></app-create-user>
+</div>

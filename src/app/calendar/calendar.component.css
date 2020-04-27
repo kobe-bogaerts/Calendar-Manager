@@ -1,0 +1,111 @@
+.app-calendar {
+  margin: 2rem auto;
+  max-width: 900px;
+}
+
+.select {
+  position: relative;
+  display: inline-block;
+  top: 7rem;
+  left: 3rem;
+  width: 15vw;
+}
+
+.select select {
+  display: inline-block;
+  width: 15vw;
+  cursor: pointer;
+  padding: 10px 15px;
+  outline: 0;
+  border: 0;
+  border-radius: 0;
+  background: #2C3E50;
+  color: #fff;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 5px;
+}
+
+.select select::-ms-expand {
+  display: none;
+}
+
+.select select:hover,
+.select select:focus {
+  color: #fff;
+  background: #2C3E50;
+}
+
+.select select:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.select__arrow {
+  position: absolute;
+  top: 48px;
+  right: 16px;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  border-style: solid;
+  border-width: 8px 5px 0 5px;
+  border-color: #fff transparent transparent transparent;
+}
+
+.select select:hover~.select__arrow,
+.select select:focus~.select__arrow {
+  border-top-color: #fff;
+}
+
+.select select:disabled~.select__arrow {
+  border-top-color: #ccc;
+}
+
+@media only screen and (max-width: 1460px){
+  .select{
+    left: 12vw;
+    top: 3rem;
+    width: 25%;
+    display: ruby-text-container;
+  }
+
+  .select select{
+    width: fit-content;
+  }
+
+  .select__arrow {
+    top: 0px;
+    position: relative;
+  }
+
+  .select h5{
+    margin-right: 1rem;
+  }
+
+  .app-calendar{
+    position: relative;
+    top: 7rem;
+    margin: 0 0 auto auto;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .select h5{
+    font-size: medium;
+  }
+}
+
+@media only screen and (min-width: 1460px){
+  .select__arrow {
+    position: absolute;
+    top: 48px;
+  }
+
+  .select {
+    position: absolute;
+    display: inline-block;
+    left: 3rem;
+  }
+}

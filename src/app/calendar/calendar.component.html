@@ -1,0 +1,30 @@
+<div class='app'>
+  <div class="container">
+    <div class="select" *ngIf="auth.lastUser.isAdmin">
+      <h5>Select User</h5>
+      <select [(ngModel)]="currentSelectedUserID">
+        <option *ngFor="let user of allUsers" value="{{user.uid}}">{{user.email}}</option>
+      </select>
+      <div class="select__arrow"></div>
+    </div>
+    <div class='app-calendar' *ngIf="calendarVisible">
+        <full-calendar *ngIf="!isMobile" #calendar defaultView="timeGridWeek" [header]="{
+          left: 'prev,next',
+          center: 'title',
+          right: 'timeGridWeek,timeGridDay'
+        }" [plugins]="calendarPlugins" [weekends]="calendarOptions.weekends" [events]="getCurrentWeekData()"
+            (dateClick)="handleDateClick($event)" [editable]="calendarOptions.editable" [droppable]="calendarOptions.droppable" [allDaySlot]="calendarOptions.allDayShow"
+            (eventDragStop)="onDragStop($event)" (eventClick)="eventClicked($event)" (eventResize)="eventResized($event)" (eventDrop)="eventResized($event)"></full-calendar>
+        
+        <full-calendar *ngIf="isMobile" #calendar defaultView="timeGridDay" [header]="{
+          left: 'prev,next',
+          center: 'title',
+          right: ''
+        }" [plugins]="calendarPlugins" [weekends]="calendarOptions.weekends" [events]="getCurrentWeekData()"
+            (dateClick)="handleDateClick($event)" [editable]="calendarOptions.editable" [droppable]="calendarOptions.droppable" [allDaySlot]="calendarOptions.allDayShow"
+            (eventDragStop)="onDragStop($event)" (eventClick)="eventClicked($event)" (eventResize)="eventResized($event)" (eventDrop)="eventResized($event)"></full-calendar>
+    </div>
+  </div>
+  <app-add-event *ngIf="showAddEvent" (closedDialog)="closeAddEvent()" (addEvent)="addEvent($event)" [eventBase]="currentEventBase"></app-add-event>
+
+</div>
