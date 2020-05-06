@@ -46,4 +46,4 @@ testem.log
 Thumbs.db
 *.cache
 .firebaserc
-src/environments/environment.*
+src/environments/*.ts
