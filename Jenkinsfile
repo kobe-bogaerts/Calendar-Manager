@@ -1,7 +1,7 @@
 pipeline {
    agent {
         docker {
-            image 'zenika/alpine-chrome'
+            image 'kolllor3/jenkins-node-angularcli:latest'
         }
     }
     stages {
