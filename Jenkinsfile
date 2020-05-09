@@ -1,16 +1,22 @@
 pipeline {
-    agent {
-        docker {
-            image 'ange10k/angularcli' 
-        }
-    }
+    agent any
     stages {
-          stage('Test') {
+        stage('Checkout') {
+            steps {
+                deleteDir()
+                checkout scm
+            }
+        }
+        stage('Build') {
             steps {
                 sh '''#!/bin/bash
-                    echo pwd 
-                    cd Calendar-Manager
                     npm install
+				'''
+            }
+        }
+        stage('Test') {
+            steps {
+                sh '''#!/bin/bash
                     npm run test
 				'''
             }
@@ -23,11 +29,11 @@ pipeline {
                 }
             }
         }
-         stage('Deploy') {
+        stage('Deploy') {
             when {
-              expression {
-                currentBuild.result == null || currentBuild.result == 'SUCCESS' 
-              }
+                expression {
+                    currentBuild.result == null || currentBuild.result == 'SUCCESS' 
+                }
             }
             steps {
                 echo 'deploying'
