@@ -7,7 +7,7 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Build') {
+        stage('Install deps') {
             steps {
                 sh '''#!/bin/bash
                     npm install
