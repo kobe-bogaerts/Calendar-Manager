@@ -9,16 +9,13 @@ pipeline {
         }
         stage('Install deps') {
             steps {
-                sh '''#!/bin/bash
-                    npm install
-				'''
+                sh 'npm install -g @angular/cli@8.3.17'
+                sh 'npm install'
             }
         }
         stage('Test') {
             steps {
-                sh '''#!/bin/bash
-                    npm run test
-				'''
+                sh 'npm run test'
             }
         }
         stage('Build') { 
