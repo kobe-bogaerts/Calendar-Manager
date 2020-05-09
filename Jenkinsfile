@@ -26,7 +26,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'Pass-Decrypting', variable: 'SECRET')]) {
                     echo 'Building'
                     sh "cd ./app && node ./setupEnv.js '${SECRET}'"
-                    sh 'cd ./app && cat ./src/environments/environments.prod.ts'
+                    sh 'cd ./app && cat ./src/environments/environment.prod.ts'
                 }
             }
         }
