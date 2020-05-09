@@ -8,6 +8,8 @@ pipeline {
           stage('Test') {
             steps {
                 sh '''#!/bin/bash
+                    echo pwd 
+                    cd Calendar-Manager
                     npm install
                     npm run test
 				'''
