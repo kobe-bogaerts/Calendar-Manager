@@ -13,6 +13,7 @@ pipeline {
         }
         stage('Install deps') {
             steps {
+                sh 'cd app'
                 sh 'npm install'
             }
         }
@@ -26,6 +27,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'Pass-Decrypting', variable: 'SECRET')]) {
                     echo 'Building'
                     sh "node ./setupEnv.js '${SECRET}'"
+                    sh 'cat ./src/environments/environments.prod.ts'
                 }
             }
         }
