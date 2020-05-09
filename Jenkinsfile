@@ -13,25 +13,19 @@ pipeline {
         }
         stage('Install deps') {
             steps {
-                sh 'echo ls'
-                sh 'echo pwd'
-                // sh 'npm install @angular/cli@8.3.17'
-                // sh 'npm install'
+                sh 'npm install'
             }
         }
         stage('Test') {
             steps {
-                // withNPM(npmrcConfig:'my-custom-npmrc') {
-                //     sh 'npm run test'
-                // }
-                echo 'testing'
+                sh 'npm run test'
             }
         }
         stage('Build') { 
             steps {
                 withCredentials([string(credentialsId: 'Pass-Decrypting', variable: 'SECRET')]) {
                     echo 'Building'
-                    echo "My secret text is '${SECRET}'"
+                    sh "node ./setupEnv.js '${SECRET}'"
                 }
             }
         }
