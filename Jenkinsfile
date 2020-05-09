@@ -13,21 +13,20 @@ pipeline {
         }
         stage('Install deps') {
             steps {
-                sh 'cd app'
-                sh 'npm install'
+                sh 'cd ./app && npm install'
             }
         }
         stage('Test') {
             steps {
-                sh 'npm run test'
+                sh 'cd ./app && npm run test'
             }
         }
         stage('Build') { 
             steps {
                 withCredentials([string(credentialsId: 'Pass-Decrypting', variable: 'SECRET')]) {
                     echo 'Building'
-                    sh "node ./setupEnv.js '${SECRET}'"
-                    sh 'cat ./src/environments/environments.prod.ts'
+                    sh "cd ./app && node ./setupEnv.js '${SECRET}'"
+                    sh 'cd ./app && cat ./src/environments/environments.prod.ts'
                 }
             }
         }
