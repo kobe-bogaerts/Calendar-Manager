@@ -9,13 +9,17 @@ pipeline {
         }
         stage('Install deps') {
             steps {
-                sh 'npm install -g @angular/cli@8.3.17'
-                sh 'npm install'
+                withNPM(npmrcConfig:'my-custom-npmrc') {
+                    sh 'npm install -g @angular/cli@8.3.17'
+                    sh 'npm install'
+                }
             }
         }
         stage('Test') {
             steps {
-                sh 'npm run test'
+                withNPM(npmrcConfig:'my-custom-npmrc') {
+                    sh 'npm run test'
+                }
             }
         }
         stage('Build') { 
