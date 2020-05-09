@@ -1,7 +1,7 @@
 pipeline {
-    agent {
+   agent {
         docker {
-            image 'node:10.20-alpine'
+            image 'zenika/alpine-chrome'
         }
     }
     stages {
@@ -13,17 +13,18 @@ pipeline {
         }
         stage('Install deps') {
             steps {
-                withNPM(npmrcConfig:'my-custom-npmrc') {
-                    sh 'npm install -g @angular/cli@8.3.17'
-                    sh 'npm install'
-                }
+                sh 'echo ls'
+                sh 'echo pwd'
+                // sh 'npm install @angular/cli@8.3.17'
+                // sh 'npm install'
             }
         }
         stage('Test') {
             steps {
-                withNPM(npmrcConfig:'my-custom-npmrc') {
-                    sh 'npm run test'
-                }
+                // withNPM(npmrcConfig:'my-custom-npmrc') {
+                //     sh 'npm run test'
+                // }
+                echo 'testing'
             }
         }
         stage('Build') { 
