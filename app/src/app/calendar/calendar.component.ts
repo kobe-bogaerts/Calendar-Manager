@@ -10,7 +10,7 @@ import { User } from '../model/User';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../core/auth.service';
 import { Week } from '../model/Week';
-import * as moment from 'moment';
+import {duration} from 'moment';
 import { CalendarService } from '../core/calendar.service';
 import { WeekSerializer } from '../model/WeekSerial';
 import { ResizeService } from '../utils/resize.service';
@@ -41,8 +41,8 @@ export class CalendarComponent implements OnInit, OnDestroy, AfterViewInit {
   isMobile: boolean;
 
   calendarOptions = {
-    minTime: moment.duration("06:00:00"),
-    maxTime: moment.duration("19:00:00"),
+    minTime: duration("06:00:00"),
+    maxTime: duration("19:00:00"),
     droppable: true,
     editable: true,
     weekends: false,
