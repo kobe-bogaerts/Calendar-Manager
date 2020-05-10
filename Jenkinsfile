@@ -26,7 +26,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'Pass-Decrypting', variable: 'SECRET')]) {
                     echo 'Building'
                     sh "cd ./app && node ./setupEnv.js '${SECRET}'"
-                    sh 'cd ./app && cat ./src/environments/environment.prod.ts'
+                    sh 'cd ./app && ng build --prod -op ../deployDocker/web'
                 }
             }
         }
@@ -38,6 +38,7 @@ pipeline {
             }
             steps {
                 echo 'deploying'
+                sh 'cd ./deployDocker/web && ls'
             }
         }
     }
