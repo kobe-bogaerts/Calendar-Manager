@@ -38,7 +38,8 @@ pipeline {
             }
             steps {
                 echo 'deploying'
-                sh 'cd ./deployDocker/web && ls'
+                sh 'cd ./deployDocker && docker build -t kobeap/calendar-manager:latest .'
+                sh 'cd ./deployDocker && docker push kobeap/calendar-manager:latest'
             }
         }
     }
