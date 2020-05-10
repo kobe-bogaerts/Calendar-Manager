@@ -14,4 +14,6 @@ function decrypt(text) {
 }
 
 let text = fs.readFileSync(path.join(__dirname, "src/environments/environment.prod.enc"), {encoding: "ascii"})
+let non_production_text = text.replace("true", "false")
 fs.writeFileSync(path.join(__dirname, "src/environments/environment.prod.ts"),decrypt(text))
+fs.writeFileSync(path.join(__dirname, "src/environments/environment.ts"),decrypt(non_production_text))

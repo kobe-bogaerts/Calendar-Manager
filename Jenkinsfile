@@ -26,7 +26,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'Pass-Decrypting', variable: 'SECRET')]) {
                     echo 'Building'
                     sh "cd ./app && node ./setupEnv.js '${SECRET}'"
-                    sh 'cd ./app && ng build --prod -op ../deployDocker/web'
+                    sh 'cd ./app && ng build --prod --outputPath=../deployDocker/web'
                 }
             }
         }
