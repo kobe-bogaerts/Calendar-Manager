@@ -37,9 +37,12 @@ pipeline {
                 }
             }
             steps {
-                echo 'deploying'
-                sh 'cd ./deployDocker && docker build -t kobeap/calendar-manager:latest .'
-                sh 'cd ./deployDocker && docker push kobeap/calendar-manager:latest'
+                dir('./deployDocker'){
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker-cred') {
+                        def customImage = docker.build('kobeap/calendar-manager:latest')
+                        customImage.push()
+                    }
+                }
             }
         }
     }
