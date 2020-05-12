@@ -38,9 +38,11 @@ pipeline {
             }
             steps {
                 dir('./deployDocker'){
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker-cred') {
-                        def customImage = docker.build('kobeap/calendar-manager:latest')
-                        customImage.push()
+                    script{
+                        docker.withRegistry('https://registry.hub.docker.com', 'docker-cred') {
+                            def customImage = docker.build('kobeap/calendar-manager:latest')
+                            customImage.push()
+                        }
                     }
                 }
             }
