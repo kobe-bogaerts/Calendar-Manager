@@ -39,6 +39,9 @@ pipeline {
             steps {
                 dir('./deployDocker'){
                     script{
+                        // withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'docker-cred', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]){
+
+                        // }
                         docker.withRegistry('https://registry.hub.docker.com', 'docker-cred') {
                             def customImage = docker.build('kobeap/calendar-manager:latest')
                             customImage.push()
