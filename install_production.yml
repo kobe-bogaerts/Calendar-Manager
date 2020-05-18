@@ -1,0 +1,42 @@
+- hosts: production
+  remote_user: root
+  tasks:
+  
+  - name: Install aptitude using apt
+    apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
+
+  - name: Install required system packages
+    apt: name={{ item }} state=latest update_cache=yes
+    loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common']
+
+  - name: Add Docker GPG apt Key
+    apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+    
+  - name: Add Docker Repository
+    apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu bionic stable
+    
+  - name: Update apt and install docker-ce
+    apt: name=docker-ce state=latest
+
+  - name: start docker service
+    service:
+        name: docker
+        state: started  
+
+  - name: setup ufw(Firewall Ubuntu)
+    ufw:
+        rule: allow
+        port: '80'
+        proto: tcp 
+
+  - name: Remove previous build
+    shell: docker stop webApp-prod && docker rm webApp-prod && docker rmi kobeap/calendar-manager:latest
+    
+  - name: Create new webApp container
+    docker_container:
+      name: webApp-prod
+      image: kobeap/calendar-manager:latest
+      ports:
+        - "80:80"

@@ -1,5 +1,5 @@
 pipeline {
-   agent {
+    agent {
         docker {
             image 'kolllor3/jenkins-node-angularcli:latest'
         }
@@ -30,7 +30,7 @@ pipeline {
                 }
             }
         }
-        stage('Deploy') {
+        stage('Upload') {
             when {
                 expression {
                     currentBuild.result == null || currentBuild.result == 'SUCCESS' 
@@ -39,14 +39,25 @@ pipeline {
             steps {
                 dir('./deployDocker'){
                     script{
-                        // withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId:'docker-cred', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]){
-
-                        // }
                         docker.withRegistry('https://registry.hub.docker.com', 'docker-cred') {
                             def customImage = docker.build('kobeap/calendar-manager:latest')
                             customImage.push()
                         }
                     }
+                }
+            }
+        }
+        stage('Deploy') {
+            agent none
+            
+            steps {
+                script{
+                    sh 'pwd'
+                    ansiblePlaybook(
+                        inventory: './hosts.yml',
+                        playbook: './install_staging.yml',
+                        credentialsId: 'ansible'
+                    )
                 }
             }
         }
