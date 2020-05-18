@@ -32,8 +32,14 @@
         port: '80'
         proto: tcp 
 
+  - name: Get infos on container
+    docker_container_info:
+      name: webApp-prod
+    register: result
+
   - name: Remove previous build
     shell: docker stop webApp-prod && docker rm webApp-prod && docker rmi kobeap/calendar-manager:latest
+    when: result.exists
     
   - name: Create new webApp container
     docker_container:

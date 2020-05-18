@@ -33,9 +33,15 @@
         src: 127.0.0.1
         proto: tcp 
 
+  - name: Get infos on container
+    docker_container_info:
+      name: webApp-prod
+    register: result
+
   - name: Remove previous build
     shell: docker stop webApp && docker rm webApp && docker rmi kobeap/calendar-manager:latest
-    
+    when: result.exists
+
   - name: Create new webApp container
     docker_container:
       name: webApp
