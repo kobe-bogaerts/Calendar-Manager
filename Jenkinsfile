@@ -56,7 +56,7 @@ pipeline {
                         inventory: './hosts.txt',
                         playbook: './install_staging.yml',
                         credentialsId: 'ansible',
-                        disableHostKeyChecking: false
+                        disableHostKeyChecking: true
                     )
                 }
             }
