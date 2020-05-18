@@ -1,5 +1,6 @@
 - hosts: production
-  remote_user: root
+  remote_user: kobe
+  sudo: yes
   tasks:
   
   - name: Install aptitude using apt
