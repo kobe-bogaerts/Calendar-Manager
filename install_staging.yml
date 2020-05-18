@@ -1,6 +1,6 @@
 - hosts: staging
   remote_user: kobe
-  sudo: yes
+  become: yes
   tasks:
   
   - name: Install aptitude using apt
