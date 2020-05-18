@@ -52,9 +52,8 @@ pipeline {
             
             steps {
                 script{
-                    sh 'pwd'
                     ansiblePlaybook(
-                        inventory: './hosts.yml',
+                        inventory: './hosts.txt',
                         playbook: './install_staging.yml',
                         credentialsId: 'ansible'
                     )
