@@ -52,12 +52,15 @@ pipeline {
             
             steps {
                 script{
-                    ansiblePlaybook(
-                        inventory: './hosts.txt',
-                        playbook: './install_staging.yml',
-                        credentialsId: 'ansible',
-                        disableHostKeyChecking: true
-                    )
+                    withCredentials([usernamePassword(credentialsId: 'ansible', passwordVariable: 'pass', usernameVariable: 'user')]) {
+                        ansiblePlaybook(
+                            inventory: './hosts.txt',
+                            playbook: './install_staging.yml',
+                            credentialsId: 'ansible',
+                            disableHostKeyChecking: true,
+                            extraVars: [ansible_sudo_pass: "${pass}"]
+                        )
+                    }
                 }
             }
         }
