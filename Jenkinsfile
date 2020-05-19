@@ -60,6 +60,18 @@ pipeline {
                             disableHostKeyChecking: true,
                             extraVars: [ansible_sudo_pass: "${pass}"]
                         )
+                        def productionFlag = input(id: 'productionOption', message: 'Do you want to deploy to production?',    
+                            parameters: [[$class: 'BooleanParameterDefinition', defaultValue: false, description: '', name: 'Check if you want to deploy to PRODUCTION']])
+                        
+                        if (productionFlag) {
+                            ansiblePlaybook(
+                                inventory: './hosts.txt',
+                                playbook: './install_production.yml',
+                                credentialsId: 'ansible',
+                                disableHostKeyChecking: true,
+                                extraVars: [ansible_sudo_pass: "${pass}"]
+                            )
+                        }
                     }
                 }
             }
