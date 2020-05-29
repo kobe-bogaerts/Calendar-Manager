@@ -1,4 +1,4 @@
 [production]
-192.168.0.30 ansible_user=kobe
+192.168.0.33 ansible_user=kobe
 [staging]
-192.168.0.30 ansible_user=kobe
+192.168.0.33 ansible_user=kobe
