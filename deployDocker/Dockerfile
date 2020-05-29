@@ -8,4 +8,4 @@ RUN filebeat modules enable system apache
 COPY ./apache.yml /etc/filebeat/modules.d/apache.yml
 COPY ./system.yml /etc/filebeat/modules.d/system.yml
 COPY ./filebeat.yml /etc/filebeat/filebeat.yml
-CMD ["filebeat"]
+CMD ["filebeat run"]
